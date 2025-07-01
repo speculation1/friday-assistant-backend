@@ -1,5 +1,6 @@
-from livekit.agents import function_tool, RunContext, Agent, VoiceConfig
+from livekit.agents import function_tool, RunContext, Agent
 from livekit.agents.agent_server import run_server
+from livekit.agents.config import VoiceConfig  # ✅ Correct location for VoiceConfig
 from tools import *
 import os
 
