@@ -29,6 +29,7 @@ langchain
 langchain-core
 langchain_community
 langchain-text-splitters
+googletrans==4.0.0rc1
 
 # Utils
 dataclasses-json
