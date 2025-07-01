@@ -1,5 +1,4 @@
-
-from livekit.agents import tool, assistant, RunContext, Agent, VoiceConfig
+from livekit.agents import function_tool, assistant, RunContext, Agent, VoiceConfig
 from tools import *
 import os
 
