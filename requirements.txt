@@ -38,4 +38,6 @@ pydantic
 pydantic-core
 pydantic-settings
 newsapi-python
+pytz
+
 
