@@ -1,17 +1,9 @@
 from livekit.agents import function_tool, RunContext, Agent
+from livekit.agents.server import run_server
 from tools import *
-import os
 
-# Check if the newer VoiceConfig import exists
-try:
-    from livekit.agents.config import VoiceConfig
-except ImportError:
-    VoiceConfig = None
-
-# Set up the agent
 my_agent = Agent(
-    name="Friday",
-    voice_config=VoiceConfig.from_language_code("en-US") if VoiceConfig else None,
+    voice="en-US",
     tools=[
         get_weather,
         search_web,
@@ -31,9 +23,4 @@ my_agent = Agent(
     ],
 )
 
-# Fallback to older server run
-if hasattr(my_agent, "start_server"):
-    my_agent.start_server()
-else:
-    import livekit.agents.assistant as assistant
-    assistant.run_server(my_agent)
+run_server(my_agent)
