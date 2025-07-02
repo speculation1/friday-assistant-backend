@@ -1,8 +1,8 @@
-from livekit.agents import Agent, RunContext, function_tool
-from livekit.agents import assistant  # ✅ Use the assistant module here
+from livekit.agents.core.server import run_server  # ✅ This is correct for v1.1.5+
+from livekit.agents import Agent
 from tools import *
 
-my_agent = Agent(
+agent = Agent(
     voice_config={"language_code": "en-US"},
     tools=[
         get_weather,
@@ -20,7 +20,8 @@ my_agent = Agent(
         get_traffic_details,
         analyze_appearance,
         request_app_lock
-    ],
+    ]
 )
 
-assistant.run_server(my_agent)
+if __name__ == "__main__":
+    run_server(agent)
