@@ -1,5 +1,5 @@
 from livekit.agents import Agent, RunContext, function_tool
-from livekit.agents.server import run_server  # ✅ works in v1.1.x
+from livekit.agents import run_server
 from tools import *
 
 agent = Agent(
