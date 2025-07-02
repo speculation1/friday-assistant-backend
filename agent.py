@@ -1,10 +1,9 @@
-from livekit.agents import function_tool, RunContext, Agent
-from livekit.agents.runtime import run_server
+from livekit.agents import Agent, RunContext, function_tool
+from livekit.agents.server import run_server  # ✅ Corrected import
 from tools import *
 
-
-agent = Agent(
-    voice="en-US",
+my_agent = Agent(
+    voice_config={"language_code": "en-US"},
     tools=[
         get_weather,
         search_web,
@@ -24,4 +23,4 @@ agent = Agent(
     ],
 )
 
-run_server(agent)
+run_server(my_agent)
