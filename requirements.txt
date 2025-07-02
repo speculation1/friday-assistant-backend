@@ -14,7 +14,7 @@ google-cloud-texttospeech
 livekit
 livekit-api
 livekit-protocol
-livekit-agents
+livekit-agents>=0.5.3
 livekit-plugins-openai
 livekit-plugins-silero
 livekit-plugins-google
@@ -39,5 +39,3 @@ pydantic-core
 pydantic-settings
 newsapi-python
 pytz
-
-
