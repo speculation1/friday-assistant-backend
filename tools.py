@@ -287,8 +287,7 @@ if __name__ == "__main__":
     #     results = await search_web(None, query)
     #     print(results)
     # asyncio.run(main())
-
-    tools = [
+tools = [
     get_weather,
     search_web,
     make_call,
@@ -305,3 +304,4 @@ if __name__ == "__main__":
     analyze_appearance,
     request_app_lock,
 ]
+
