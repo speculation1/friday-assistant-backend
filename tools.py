@@ -287,3 +287,21 @@ if __name__ == "__main__":
     #     results = await search_web(None, query)
     #     print(results)
     # asyncio.run(main())
+
+    tools = [
+    get_weather,
+    search_web,
+    make_call,
+    notify_incoming_call,
+    battery_status,
+    play_music,
+    take_photo,
+    add_appointment,
+    get_local_time,
+    send_email,
+    translate_text,
+    get_news,
+    get_traffic_details,
+    analyze_appearance,
+    request_app_lock,
+]

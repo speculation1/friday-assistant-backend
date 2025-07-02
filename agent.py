@@ -1,16 +1,16 @@
-from livekit.agents import Agent, RunContext
-from tools import tools  # your list of tools
 import asyncio
+from livekit.agents import Agent
+from tools import tools  # This imports the list you just defined
 
 async def main():
     agent = Agent(
         tools=tools,
-        description="Your smart assistant",
+        description="Your smart assistant Friday",
     )
 
     async with agent.run_in_background():
-        print("Agent is running...")
-        await asyncio.Event().wait()  # Keeps the agent alive
+        print("🟢 Friday is running...")
+        await asyncio.Event().wait()
 
 if __name__ == "__main__":
     asyncio.run(main())
