@@ -1,29 +1,41 @@
-from livekit.agents import Agent, RunContext, function_tool
-from livekit.agents.runtime import run_server
-from tools import *
+# Core
+requests
+python-dotenv
+duckduckgo-search
 
-# Define your agent
-agent = Agent(
-    description="Friday is an AI assistant that helps with tasks like calling, emails, battery status, and more.",
-    tools=[
-        get_weather,
-        search_web,
-        make_call,
-        notify_incoming_call,
-        battery_status,
-        play_music,
-        take_photo,
-        add_appointment,
-        get_local_time,
-        send_email,
-        translate_text,
-        get_news,
-        get_traffic_details,
-        analyze_appearance,
-        request_app_lock
-    ],
-)
+# Google
+googleapis-common-protos
+google-api-core
+google-auth
+google-cloud-speech
+google-cloud-texttospeech
 
-# Run the agent server
-if __name__ == "__main__":
-    run_server(agent)
+# LiveKit and Plugins
+livekit
+livekit-api
+livekit-protocol
+livekit-agents>=0.5.3
+livekit-plugins-openai
+livekit-plugins-silero
+livekit-plugins-google
+livekit-plugins-noise-cancellation
+
+# AI tools
+openai
+onnxruntime
+
+# LangChain stack
+langchain
+langchain-core
+langchain_community
+langchain-text-splitters
+googletrans==4.0.0rc1
+
+# Utils
+dataclasses-json
+coloredlogs
+pydantic
+pydantic-core
+pydantic-settings
+newsapi-python
+pytz
