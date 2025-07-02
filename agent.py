@@ -1,5 +1,5 @@
 from livekit.agents import Agent, RunContext, function_tool
-from livekit.agents.server import run_server  # ✅ Corrected import
+from livekit.agents import assistant  # ✅ Use the assistant module here
 from tools import *
 
 my_agent = Agent(
@@ -23,4 +23,4 @@ my_agent = Agent(
     ],
 )
 
-run_server(my_agent)
+assistant.run_server(my_agent)
