@@ -1,27 +1,16 @@
-from livekit.agents import Agent, RunContext, function_tool
-from livekit.agents import run_server
-from tools import *
+from livekit.agents import Agent, RunContext
+from tools import tools  # your list of tools
+import asyncio
 
-agent = Agent(
-    voice_config={"language_code": "en-US"},
-    tools=[
-        get_weather,
-        search_web,
-        make_call,
-        notify_incoming_call,
-        battery_status,
-        play_music,
-        take_photo,
-        add_appointment,
-        get_local_time,
-        send_email,
-        translate_text,
-        get_news,
-        get_traffic_details,
-        analyze_appearance,
-        request_app_lock
-    ]
-)
+async def main():
+    agent = Agent(
+        tools=tools,
+        description="Your smart assistant",
+    )
+
+    async with agent.run_in_background():
+        print("Agent is running...")
+        await asyncio.Event().wait()  # Keeps the agent alive
 
 if __name__ == "__main__":
-    run_server(agent)
+    asyncio.run(main())
