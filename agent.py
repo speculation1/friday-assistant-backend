@@ -1,10 +1,12 @@
 import asyncio
 from livekit.agents import Agent
-from tools import tools  # Your defined function_tool list
+from tools import tools  # Import your list of tool functions
 
 async def main():
     agent = Agent(
-        tools=tools  # ✅ ONLY 'tools' is accepted in v1.1.5
+        name="Friday",
+        instructions="You are Friday, a smart assistant that helps the user with real-time voice tasks.",
+        tools=tools,
     )
 
     async with agent.run_in_background():
