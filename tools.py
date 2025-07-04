@@ -10,9 +10,12 @@ from typing import Optional
 from duckduckgo_search import DDGS
 from googletrans import Translator
 import newsapi
+from dotenv import load_dotenv
 
 from datetime import datetime
 import pytz
+
+load_dotenv()
 
 # -----------------------
 # WEATHER
@@ -304,4 +307,6 @@ tools = [
     analyze_appearance,
     request_app_lock,
 ]
+
+
 
