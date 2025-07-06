@@ -2,43 +2,47 @@ import asyncio
 import os
 import logging
 from dotenv import load_dotenv
-from livekit.agents import Agent, Worker
+from livekit import agents
+from livekit.agents import Agent
 from tools import tools
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
 
-# Ensure required environment variables are present
+# Verify required environment variables
 required_env = [
-    "GMAIL_USER", "GMAIL_APP_PASSWORD",
-    "NEWS_API_KEY",
-    "LIVEKIT_URL", "LIVEKIT_API_KEY", "LIVEKIT_API_SECRET"
+    "LIVEKIT_URL", "LIVEKIT_API_KEY", "LIVEKIT_API_SECRET",
+    "GMAIL_USER", "GMAIL_APP_PASSWORD", "NEWS_API_KEY"
 ]
 
 missing = [var for var in required_env if not os.getenv(var)]
 if missing:
-    raise EnvironmentError(f"Missing required environment variables: {', '.join(missing)}")
+    raise EnvironmentError(f"Missing environment variables: {', '.join(missing)}")
 
 async def main():
-    # Create the agent instance
+    # Create the agent
     agent = Agent(
         tools=tools,
-        instructions="You are Friday, a helpful mobile assistant created by Austine. Respond clearly and concisely.",
+        instructions="You are Friday, a helpful mobile assistant created by Austine."
     )
 
-    # Create and run the worker
-    worker = Worker(
-        agent=agent,
-        room_name="assistant-room",  # Required parameter
-        identity="friday-bot",       # Required parameter
-        url=os.getenv("LIVEKIT_URL"),
-        api_key=os.getenv("LIVEKIT_API_KEY"),
-        api_secret=os.getenv("LIVEKIT_API_SECRET"),
+    # Configure worker options
+    worker_options = agents.WorkerOptions(
+        worker_type="agent",
+        room_name="assistant-room",
+        identity="friday-bot",
+        connect_options=agents.ConnectOptions(
+            url=os.getenv("LIVEKIT_URL"),
+            api_key=os.getenv("LIVEKIT_API_KEY"),
+            api_secret=os.getenv("LIVEKIT_API_SECRET"),
+        )
     )
 
+    # Create and run worker
+    worker = agents.create_worker(agent, worker_options)
     await worker.run()
 
 if __name__ == "__main__":
