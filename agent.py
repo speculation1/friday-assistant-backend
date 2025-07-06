@@ -2,8 +2,7 @@ import asyncio
 import os
 import logging
 from dotenv import load_dotenv
-from livekit import agents
-from livekit.agents import Agent
+from livekit.agents import Agent, Worker
 from tools import tools
 
 # Load environment variables from .env file
@@ -24,16 +23,17 @@ if missing:
     raise EnvironmentError(f"Missing required environment variables: {', '.join(missing)}")
 
 async def main():
-    # Create the agent instance with just the tools and instructions
+    # Create the agent instance
     agent = Agent(
         tools=tools,
         instructions="You are Friday, a helpful mobile assistant created by Austine. Respond clearly and concisely.",
     )
 
-    # Connect to LiveKit
-    worker = agents.Worker(
-        request_channel="your_request_channel",  # specify your channel name
+    # Create and run the worker
+    worker = Worker(
         agent=agent,
+        room_name="assistant-room",  # Required parameter
+        identity="friday-bot",       # Required parameter
         url=os.getenv("LIVEKIT_URL"),
         api_key=os.getenv("LIVEKIT_API_KEY"),
         api_secret=os.getenv("LIVEKIT_API_SECRET"),
